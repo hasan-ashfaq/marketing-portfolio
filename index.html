@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hasan Ashfaq — SEO Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F8F5F0;
+    --dark: #1A1714;
+    --accent: #C8A96E;
+    --accent2: #8B4A3C;
+    --text: #2C2820;
+    --muted: #7A7268;
+    --border: #E2DDD6;
+    --card: #FFFFFF;
+    --section-bg: #F2EDE6;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); line-height: 1.7; }
+  a { color: inherit; text-decoration: none; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(248,245,240,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px;
+  }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--dark); }
+  .nav-links { display: flex; gap: 2rem; font-size: 0.875rem; color: var(--muted); }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta { background: var(--dark); color: #fff; padding: 8px 20px; border-radius: 100px; font-size: 0.85rem; font-weight: 500; transition: background 0.2s; }
+  .nav-cta:hover { background: var(--accent2); }
+
+  /* PROFILE PHOTO */
+  .profile-wrap { display: flex; align-items: center; gap: 16px; margin-bottom: 1.8rem; }
+  .profile-photo-container { position: relative; cursor: pointer; flex-shrink: 0; }
+  .profile-photo { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); display: block; }
+  .profile-placeholder {
+    width: 80px; height: 80px; border-radius: 50%; background: var(--section-bg);
+    border: 2px dashed var(--accent); display: flex; flex-direction: column; align-items: center; justify-content: center;
+    cursor: pointer; transition: border-color 0.2s, background 0.2s;
+  }
+  .profile-placeholder:hover { background: #EBE4D9; border-color: var(--accent2); }
+  .profile-placeholder span { font-size: 1.4rem; }
+  .profile-placeholder p { font-size: 0.6rem; color: var(--muted); margin-top: 2px; text-align: center; line-height: 1.2; }
+  .upload-btn-small {
+    position: absolute; bottom: 0; right: 0; width: 24px; height: 24px; border-radius: 50%;
+    background: var(--dark); border: 2px solid var(--cream); display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem; color: #fff; cursor: pointer;
+  }
+  .profile-info h3 { font-size: 1rem; font-weight: 600; color: var(--dark); }
+  .profile-info p { font-size: 0.82rem; color: var(--muted); }
+  .profile-photo { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; object-position: top; border: 3px solid var(--accent); display: block; }
+
+  /* HERO */
+  .hero { max-width: 900px; margin: 0 auto; padding: 80px 2rem 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--section-bg); border: 1px solid var(--border); padding: 6px 16px; border-radius: 100px; font-size: 0.78rem; color: var(--muted); margin-bottom: 1.5rem; }
+  .hero-badge span { width: 8px; height: 8px; border-radius: 50%; background: #5BBD72; display: inline-block; }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: 3.2rem; line-height: 1.1; color: var(--dark); margin-bottom: 1.2rem; }
+  .hero h1 em { color: var(--accent); font-style: italic; }
+  .hero p { color: var(--muted); font-size: 1rem; margin-bottom: 2rem; }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary { background: var(--dark); color: #fff; padding: 12px 28px; border-radius: 100px; font-size: 0.9rem; font-weight: 500; transition: all 0.2s; }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+  .btn-outline { border: 1px solid var(--border); color: var(--text); padding: 12px 28px; border-radius: 100px; font-size: 0.9rem; transition: all 0.2s; }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* HERO STATS CARD */
+  .hero-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; }
+  .hero-card-title { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.5rem; }
+  .stat-row { display: flex; flex-direction: column; gap: 1rem; }
+  .stat-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; background: var(--section-bg); border-radius: 12px; }
+  .stat-label { font-size: 0.85rem; color: var(--muted); }
+  .stat-value { font-size: 1.2rem; font-weight: 600; color: var(--dark); }
+  .stat-sub { font-size: 0.72rem; color: var(--muted); text-align: right; }
+
+  /* SECTIONS */
+  section { max-width: 900px; margin: 0 auto; padding: 60px 2rem; }
+  .section-label { font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 500; margin-bottom: 0.5rem; }
+  h2 { font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: var(--dark); margin-bottom: 2rem; line-height: 1.2; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .about-text p { color: var(--muted); font-size: 0.97rem; margin-bottom: 1rem; }
+  .about-text strong { color: var(--text); }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .skill-tag { background: var(--section-bg); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; font-size: 0.82rem; color: var(--text); display: flex; align-items: center; gap: 8px; }
+  .skill-dot { width: 6px; height: 6px; border-radius: 50%; }
+  .dot-gold { background: var(--accent); }
+  .dot-red { background: var(--accent2); }
+  .dot-green { background: #5BBD72; }
+  .dot-blue { background: #5B8BBD; }
+  .dot-purple { background: #8B5BBD; }
+
+  /* DARK CASE STUDY CARD */
+  .case-card { background: var(--dark); border-radius: 24px; padding: 2.5rem; margin-bottom: 2rem; color: #fff; }
+  .case-card .section-label { color: var(--accent); }
+  .case-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.7rem; color: #fff; margin-bottom: 0.5rem; }
+  .case-card .case-desc { color: rgba(255,255,255,0.65); font-size: 0.92rem; margin-bottom: 1.5rem; }
+  .metric-pill { background: rgba(200,169,110,0.2); border: 1px solid rgba(200,169,110,0.3); color: var(--accent); border-radius: 100px; padding: 4px 14px; font-size: 0.78rem; font-weight: 500; display: inline-block; margin: 0 4px 6px 0; }
+
+  /* SCREENSHOTS */
+  .screenshots-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 1.5rem; }
+  .screenshots-grid-1 { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 1.5rem; }
+  .screenshot-card { border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); position: relative; }
+  .screenshot-card img { width: 100%; display: block; height: 200px; object-fit: cover; object-position: top; }
+  .screenshot-card img.full { height: 260px; }
+  .screenshot-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 8px 12px; background: linear-gradient(transparent, rgba(0,0,0,0.75)); font-size: 0.78rem; color: #fff; font-weight: 500; }
+
+  /* STORY STEPS */
+  .story-steps { display: flex; flex-direction: column; gap: 0; margin: 1.5rem 0; }
+  .story-step { display: flex; gap: 20px; align-items: flex-start; }
+  .step-line { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+  .step-dot { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600; color: var(--dark); flex-shrink: 0; }
+  .step-connector { width: 2px; background: rgba(200,169,110,0.3); flex: 1; min-height: 24px; margin: 4px 0; }
+  .step-content { padding-bottom: 24px; }
+  .step-content h4 { font-size: 0.95rem; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .step-content p { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+  /* EXP CARD */
+  .exp-card { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 1.8rem; margin-bottom: 1.2rem; }
+  .exp-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1rem; }
+  .exp-title { font-size: 1.1rem; font-weight: 600; color: var(--dark); }
+  .exp-company { font-size: 0.87rem; color: var(--accent); margin-top: 2px; }
+  .exp-date { font-size: 0.78rem; color: var(--muted); background: var(--section-bg); padding: 4px 12px; border-radius: 100px; white-space: nowrap; }
+  .exp-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.75; }
+  .exp-desc li { margin-bottom: 6px; list-style: none; padding-left: 16px; position: relative; }
+  .exp-desc li::before { content: '–'; position: absolute; left: 0; color: var(--accent); }
+
+  /* SERVICES */
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .service-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1.4rem; transition: border-color 0.2s, transform 0.2s; }
+  .service-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .service-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--section-bg); margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+  .service-card h4 { font-size: 0.97rem; font-weight: 600; color: var(--dark); margin-bottom: 6px; }
+  .service-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+  /* LEARNING */
+  .learning-strip { background: var(--section-bg); border: 1px solid var(--border); border-radius: 18px; padding: 2rem; }
+  .learning-items { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 1.2rem; }
+  .learning-item { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 10px 16px; font-size: 0.85rem; color: var(--text); display: flex; align-items: center; gap: 8px; }
+  .learning-badge { background: #FFF3CD; color: #956B00; font-size: 0.68rem; padding: 2px 8px; border-radius: 100px; font-weight: 500; }
+  .done-badge { background: #D4EDDA; color: #1A6B31; font-size: 0.68rem; padding: 2px 8px; border-radius: 100px; font-weight: 500; }
+
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .contact-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1.4rem; display: flex; align-items: center; gap: 14px; }
+  .contact-icon { width: 42px; height: 42px; border-radius: 12px; background: var(--section-bg); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+  .contact-card h4 { font-size: 0.82rem; color: var(--muted); margin-bottom: 2px; }
+  .contact-card p { font-size: 0.92rem; color: var(--dark); font-weight: 500; }
+
+  /* OPEN FOR */
+  .open-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 1.5rem; }
+  .open-card { border: 1px solid var(--border); border-radius: 14px; padding: 1.2rem 1.4rem; transition: border-color 0.2s; }
+  .open-card:hover { border-color: var(--accent); }
+  .open-card h4 { font-size: 0.9rem; font-weight: 600; color: var(--dark); margin-bottom: 4px; }
+  .open-card p { font-size: 0.8rem; color: var(--muted); }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+  footer { text-align: center; padding: 2.5rem; font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--border); }
+
+  @media (max-width: 700px) {
+    .hero, .about-grid, .contact-grid, .services-grid, .open-grid { grid-template-columns: 1fr; }
+    .hero { padding: 40px 1.5rem 30px; gap: 30px; }
+    .hero h1 { font-size: 2.2rem; }
+    .skills-grid, .screenshots-grid { grid-template-columns: 1fr; }
+    nav .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Hasan Ashfaq</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#work">Case Studies</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="/cdn-cgi/l/email-protection#a7ca89cfc6d4c6c99597979494e7c0cac6cecb89c4c8ca" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="profile-wrap">
+      <div class="profile-photo-container">
+        <img src="" class="profile-photo" alt="Hasan Ashfaq">
+      </div>
+      <div class="profile-info">
+        <h3>Hasan Ashfaq</h3>
+        <p>SEO Executive · Karachi, PK</p>
+      </div>
+    </div>
+
+    <div class="hero-badge">
+      <span></span>
+      Open for Mid-Level SEO roles & internships
+    </div>
+    <h1>SEO <em>Executive</em> &amp; Growth Specialist</h1>
+    <p>CS graduate who started experimenting with SEO before finishing university — ranked sites, flipped a niche project for $500, worked with real clients across Pakistan and Brazil, and ran paid campaigns for a Toronto-based app. Now fully focused on building a professional SEO career.</p>
+    <div class="hero-ctas">
+      <a href="/cdn-cgi/l/email-protection#48256620293b29267a78787b7b082f25292124662b2725" class="btn-primary">Let's Work Together</a>
+      <a href="#work" class="btn-outline">View Case Studies</a>
+    </div>
+  </div>
+
+  <div class="hero-card">
+    <div class="hero-card-title">Across All Projects — Real Numbers</div>
+    <div class="stat-row">
+      <div class="stat-item">
+        <div>
+          <div class="stat-label">Organic Users (sadgirldp.com)</div>
+          <div class="stat-sub">Mar 2022 – Apr 2026 · Google Analytics</div>
+        </div>
+        <div class="stat-value">323K</div>
+      </div>
+      <div class="stat-item">
+        <div>
+          <div class="stat-label">Organic Sessions</div>
+          <div class="stat-sub">Pure SEO traffic, no paid</div>
+        </div>
+        <div class="stat-value">279K</div>
+      </div>
+      <div class="stat-item">
+        <div>
+          <div class="stat-label">App Installs (Sendex · Google Ads)</div>
+          <div class="stat-sub">$688 spend · $0.11 per install</div>
+        </div>
+        <div class="stat-value">6,040</div>
+      </div>
+      <div class="stat-item">
+        <div>
+          <div class="stat-label">GSC Impressions (Sanerum)</div>
+          <div class="stat-sub">16 months organic · 518 clicks</div>
+        </div>
+        <div class="stat-value">8.86K</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About Me</div>
+  <h2>Self-Taught. Real Results.</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm <strong>Hasan Ashfaq</strong>, a Computer Science graduate from Karachi, Pakistan. While most people wait until after graduation to start — I was already building, ranking, and experimenting with live websites while still in university.</p>
+      <p>My SEO journey started with <strong>sadgirldp.com</strong> — a niche site I built by spotting an AI image trend on Bing, applying on-page SEO, and watching it rank organically. I later flipped it for <strong>$500</strong>. That one experiment turned into a full career direction.</p>
+      <p>Since then I've managed SEO and digital presence for a <strong>fashion e-commerce brand (Sanerum Couture)</strong>, worked on an <strong>international niche site in Brazil</strong>, and gained hands-on Google Ads experience running app install campaigns for <strong>Sendex Inc (Toronto)</strong>. Everything I know was earned by doing — not just studying.</p>
+      <p>I'm now seeking a <strong>mid-level SEO position</strong> where I can contribute meaningfully, grow alongside experienced professionals, and keep pushing my skills further.</p>
+    </div>
+    <div>
+      <div style="font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.8rem;">Core SEO Skills</div>
+      <div class="skills-grid">
+        <div class="skill-tag"><span class="skill-dot dot-gold"></span>On-Page & Technical SEO</div>
+        <div class="skill-tag"><span class="skill-dot dot-blue"></span>Google Search Console</div>
+        <div class="skill-tag"><span class="skill-dot dot-green"></span>Keyword Research & Clustering</div>
+        <div class="skill-tag"><span class="skill-dot dot-red"></span>Ahrefs / SEMrush</div>
+        <div class="skill-tag"><span class="skill-dot dot-purple"></span>Topical Authority & Content</div>
+        <div class="skill-tag"><span class="skill-dot dot-gold"></span>Google Analytics 4</div>
+        <div class="skill-tag"><span class="skill-dot dot-blue"></span>Core Web Vitals</div>
+        <div class="skill-tag"><span class="skill-dot dot-green"></span>Schema Markup</div>
+        <div class="skill-tag"><span class="skill-dot dot-red"></span>Google Merchant Center</div>
+        <div class="skill-tag"><span class="skill-dot dot-purple"></span>Meta & Google Ads</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CASE STUDIES -->
+<section id="work">
+  <div class="section-label">Case Studies</div>
+  <h2>Real Projects. Real Data.</h2>
+
+  <!-- CASE 1: sadgirldp.com -->
+  <div class="case-card">
+    <div class="section-label">Personal Project · Niche SEO</div>
+    <h3>sadgirldp.com — Ranked & Flipped for $500</h3>
+    <p class="case-desc">Spotted an AI image trend on Bing Image Creator before it went mainstream. Built a niche site targeting high-volume image search queries, applied on-page SEO, and ranked organically — then sold the site for $500. This was my first proof that SEO works when you move fast on the right opportunity.</p>
+    <div>
+      <span class="metric-pill">323K Active Users</span>
+      <span class="metric-pill">279K Organic Sessions</span>
+      <span class="metric-pill">318K New Users</span>
+      <span class="metric-pill">India 213K · PK 34K · US 9.4K</span>
+      <span class="metric-pill">Flipped for $500</span>
+    </div>
+
+    <!-- Story Steps -->
+    <div class="story-steps" style="margin-top: 2rem;">
+      <div class="story-step">
+        <div class="step-line"><div class="step-dot">1</div><div class="step-connector"></div></div>
+        <div class="step-content">
+          <h4>Spotted the Trend</h4>
+          <p>Noticed AI-generated "sad girl" aesthetic images going viral on Bing Image Creator. Identified low-competition, high-intent search queries before the niche was saturated.</p>
+        </div>
+      </div>
+      <div class="story-step">
+        <div class="step-line"><div class="step-dot">2</div><div class="step-connector"></div></div>
+        <div class="step-content">
+          <h4>Built & Optimized</h4>
+          <p>Built the site on WordPress, applied on-page SEO — title tags, meta descriptions, image alt text, internal linking, and site structure optimized for organic search visibility.</p>
+        </div>
+      </div>
+      <div class="story-step">
+        <div class="step-line"><div class="step-dot">3</div><div class="step-connector"></div></div>
+        <div class="step-content">
+          <h4>Ranked Organically</h4>
+          <p>Site reached 323K active users driven almost entirely by organic search — 279K sessions from Google. Top traffic from India, Pakistan, Bangladesh, and the US.</p>
+        </div>
+      </div>
+      <div class="story-step">
+        <div class="step-line"><div class="step-dot">4</div><div class="step-connector"></div></div>
+        <div class="step-content">
+          <h4>Flipped for $500</h4>
+          <p>Sold the site successfully — turning a personal SEO experiment into real monetary proof of concept. This is what made me commit fully to SEO as a career.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Analytics Screenshot -->
+    <div class="screenshots-grid-1">
+      <div class="screenshot-card">
+        <img class="full" src="1775369464004_image.png" alt="sadgirldp.com Google Analytics — 323K users, 279K organic sessions" onerror="this.style.background='#2a2520';this.style.height='260px'">
+        <div class="screenshot-label">📊 Google Analytics — 323K Users · 279K Organic Sessions · Mar 2022 – Apr 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASE 2: Sendex -->
+  <div class="case-card">
+    <div class="section-label">Client Work · Google Ads · App Marketing</div>
+    <h3>Sendex Inc — 6,040 App Installs at $0.11 Each</h3>
+    <p class="case-desc">Worked remotely with Sendex Inc, a Toronto-based app company. Managed Google Ads campaigns focused on driving Android app installs — optimizing creatives, targeting, and bidding strategy to bring cost-per-install down to just $0.11.</p>
+    <div>
+      <span class="metric-pill">$688 Total Spend</span>
+      <span class="metric-pill">95K Clicks</span>
+      <span class="metric-pill">6,040 App Installs</span>
+      <span class="metric-pill">$0.11 Cost Per Install</span>
+      <span class="metric-pill">876K Impressions</span>
+      <span class="metric-pill">173K TrueView Views</span>
+    </div>
+
+    <div class="screenshots-grid" style="margin-top: 1.5rem;">
+      <div class="screenshot-card">
+        <img src="1775369472096_sendeX_app_install_campaign.png" alt="Sendex Google Ads Campaign Dashboard" onerror="this.style.background='#2a2520';this.style.height='200px'">
+        <div class="screenshot-label">📱 Google Ads — Campaigns Dashboard · 4,734 Installs Tracked</div>
+      </div>
+      <div class="screenshot-card">
+        <img src="1775369472096_sendex_app_installls_spedingpng.png" alt="Sendex Google Ads Spend Overview" onerror="this.style.background='#2a2520';this.style.height='200px'">
+        <div class="screenshot-label">💰 $688 Spend · 95K Clicks · 6,040 Conversions · $0.11 CPI</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASE 3: Sanerum -->
+  <div class="case-card">
+    <div class="section-label">Client Work · E-commerce SEO · Social Media</div>
+    <h3>Sanerum Couture — Full Digital Presence from Scratch</h3>
+    <p class="case-desc">Pakistani luxury fashion brand. Managed their complete digital presence — on-page SEO, Google Search Console monitoring, Google Merchant Center product feed, WordPress/WooCommerce website, Meta Ads campaigns, and Instagram content strategy. Built everything from zero.</p>
+    <div>
+      <span class="metric-pill">8,860 GSC Impressions</span>
+      <span class="metric-pill">518 Organic Clicks</span>
+      <span class="metric-pill">421 Products on Google</span>
+      <span class="metric-pill">11K+ Instagram Followers</span>
+      <span class="metric-pill">592K Meta Ads Reach</span>
+      <span class="metric-pill">$1,420 Ad Spend Managed</span>
+    </div>
+
+    <div class="screenshots-grid" style="margin-top: 1.5rem;">
+      <div class="screenshot-card">
+        <img src="1775223459779_sanerum_com.png" alt="Google Search Console Sanerum" onerror="this.style.background='#2a2520';this.style.height='200px'">
+        <div class="screenshot-label">🔍 Google Search Console — 8,860 Impressions · 518 Clicks · 16 Months</div>
+      </div>
+      <div class="screenshot-card">
+        <img src="1775223459777_google_merchant.png" alt="Google Merchant Center" onerror="this.style.background='#2a2520';this.style.height='200px'">
+        <div class="screenshot-label">🛒 Google Merchant Center — 421 Products · Feed Optimization</div>
+      </div>
+      <div class="screenshot-card">
+        <img src="1775223459776_eccomerce_shopping_campiagns.png" alt="Meta Ads Manager" onerror="this.style.background='#2a2520';this.style.height='200px'">
+        <div class="screenshot-label">📊 Meta Ads Manager — 102 Ad Sets · $1,420 Spent · 592K Reach</div>
+      </div>
+      <div class="screenshot-card">
+        <img src="1775223459778_manage_sanerum_brand_social_media_accounts_and_product_lisitng.png" alt="Instagram Sanerum" onerror="this.style.background='#2a2520';this.style.height='200px'">
+        <div class="screenshot-label">📱 Instagram @sanerum_couture — 11K Followers · 845+ Posts</div>
+      </div>
+    </div>
+
+    <!-- Detailed breakdown -->
+    <div class="exp-card" style="margin-top: 1.5rem; background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1);">
+      <div class="exp-header">
+        <div>
+          <div class="exp-title" style="color:#fff;">SEO & Digital Marketing Work</div>
+          <div class="exp-company">What I actually did</div>
+        </div>
+        <div class="exp-date">2024 – 2026</div>
+      </div>
+      <ul class="exp-desc" style="color: rgba(255,255,255,0.65);">
+        <li>Managed WordPress + WooCommerce website — monitored performance via Google Search Console, identified keyword opportunities, improved page structure for organic ranking.</li>
+        <li>Set up and maintained Google Merchant Center with 421 product listings — diagnosed and fixed feed errors (missing size/age group attributes) to improve product approval rate.</li>
+        <li>Ran 102+ Meta Ads ad sets — audience targeting, A/B testing creatives, catalog sale campaigns achieving $3.84 cost per purchase.</li>
+        <li>Grew Instagram from 0 to 11K+ followers with consistent content strategy and collection launches.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CASE 4: Brazil Client -->
+  <div class="case-card">
+    <div class="section-label">Personal Project · International SEO</div>
+    <h3>frasesparafotosozinha.com — Brazilian Portuguese Niche Site</h3>
+    <p class="case-desc">Applied SEO skills to an international market — a Brazilian Portuguese quotes and captions site targeting a completely different language and audience. Worked on on-page optimization, content structure, and keyword research for a non-English market, proving that SEO principles transfer across languages and geographies.</p>
+    <div>
+      <span class="metric-pill">International SEO</span>
+      <span class="metric-pill">Brazilian Portuguese Market</span>
+      <span class="metric-pill">On-Page Optimization</span>
+      <span class="metric-pill">Non-English Keyword Research</span>
+    </div>
+    <div style="margin-top: 1.5rem; padding: 1.2rem; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+      <p style="font-size: 0.88rem; color: rgba(255,255,255,0.55); font-style: italic;">Full analytics and GSC data available on request. This project demonstrates ability to apply SEO in non-English markets — targeting different search behaviors, seasonal trends, and audience intent in Brazilian Portuguese.</p>
+    </div>
+  </div>
+
+</section>
+
+<hr class="divider">
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-label">What I Offer</div>
+  <h2>SEO Services</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🔍</div>
+      <h4>On-Page SEO</h4>
+      <p>Title tags, meta descriptions, heading structure, internal linking, image optimization, and content structuring for target keywords.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚙️</div>
+      <h4>Technical SEO</h4>
+      <p>Core Web Vitals, crawl budget optimization, site structure, schema markup, log file analysis, and WordPress/Shopify SEO fixes.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🗝️</div>
+      <h4>Keyword Research</h4>
+      <p>Topical mapping, keyword clustering, search intent analysis, and content gap identification using Ahrefs, SEMrush, and GSC data.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🛒</div>
+      <h4>E-commerce SEO</h4>
+      <p>Product feed optimization, Google Merchant Center management, category page SEO, and WooCommerce/Shopify store optimization.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <h4>SEO Audits & Reporting</h4>
+      <p>Full site audits using Screaming Frog and Ahrefs, Google Search Console analysis, and monthly performance reporting with actionable insights.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🎯</div>
+      <h4>Paid Ads (Support)</h4>
+      <p>Google Ads (Search & App campaigns) and Meta Ads management — audience setup, creatives, optimization, and conversion tracking.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- LEARNING -->
+<section>
+  <div class="section-label">Growth Mindset</div>
+  <h2>Always Learning</h2>
+  <div class="learning-strip">
+    <p style="color: var(--muted); font-size: 0.92rem;">Everything I've learned came from doing — YouTube, Facebook groups, industry communities, and real experiments on live sites. Here's where I am now:</p>
+    <div class="learning-items">
+      <div class="learning-item">🔍 On-Page SEO <span class="done-badge">Strong</span></div>
+      <div class="learning-item">⚙️ Technical SEO <span class="done-badge">Active</span></div>
+      <div class="learning-item">🗝️ Keyword Research <span class="done-badge">Strong</span></div>
+      <div class="learning-item">📊 Google Search Console <span class="done-badge">Active</span></div>
+      <div class="learning-item">🛒 Google Merchant Center <span class="done-badge">Active</span></div>
+      <div class="learning-item">📈 Ahrefs / SEMrush <span class="done-badge">Active</span></div>
+      <div class="learning-item">🔗 Link Building & Outreach <span class="learning-badge">In Progress</span></div>
+      <div class="learning-item">📢 Google Ads (Search) <span class="learning-badge">In Progress</span></div>
+      <div class="learning-item">📉 Google Analytics 4 <span class="learning-badge">In Progress</span></div>
+      <div class="learning-item">🤖 AI SEO & Automation <span class="done-badge">Active</span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- OPEN FOR -->
+<section>
+  <div class="section-label">Opportunities</div>
+  <h2>Open For</h2>
+  <div class="open-grid">
+    <div class="open-card">
+      <h4>💼 Mid-Level SEO Role</h4>
+      <p>Looking to join a professional team where I can contribute real SEO work, learn from experienced people, and grow fast.</p>
+    </div>
+    <div class="open-card">
+      <h4>🎓 SEO Internship</h4>
+      <p>Open to structured internship programs at agencies or in-house teams — I bring real project experience from day one.</p>
+    </div>
+    <div class="open-card">
+      <h4>🤝 Freelance Projects</h4>
+      <p>Available for on-page audits, keyword research, e-commerce SEO, and Google Merchant Center optimization for brands.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Get In Touch</div>
+  <h2>Let's Work Together</h2>
+  <p style="color: var(--muted); margin-bottom: 2rem; max-width: 500px;">Whether you need an SEO specialist, want to discuss a project, or just want to connect — reach out anytime.</p>
+  <div class="contact-grid">
+    <a href="tel:03262369695" class="contact-card">
+      <div class="contact-icon">📞</div>
+      <div><h4>Phone / WhatsApp</h4><p>0326-2369695</p></div>
+    </a>
+    <a href="/cdn-cgi/l/email-protection#9af7b4f2fbe9fbf4a8aaaaa9a9dafdf7fbf3f6b4f9f5f7" class="contact-card">
+      <div class="contact-icon">✉️</div>
+      <div><h4>Email</h4><p><span class="__cf_email__" data-cfemail="f895d690998b9996cac8c8cbcbb89f95999194d69b9795">[email&#160;protected]</span></p></div>
+    </a>
+    <a href="https://linkedin.com/in/hasan-ashfaq-767a9a1b5/" target="_blank" class="contact-card">
+      <div class="contact-icon">💼</div>
+      <div><h4>LinkedIn</h4><p>Hasan Ashfaq</p></div>
+    </a>
+    <a href="#work" class="contact-card">
+      <div class="contact-icon">📁</div>
+      <div><h4>Case Studies</h4><p>View all projects above</p></div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>Hasan Ashfaq &nbsp;·&nbsp; SEO Executive & Growth Specialist &nbsp;·&nbsp; Karachi, Pakistan</p>
+  <p style="margin-top: 6px;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ff92d1979e8c9e91cdcfcfccccbf98929e9693d19c9092">[email&#160;protected]</a> &nbsp;·&nbsp; 0326-2369695</p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function loadPhoto(event) {
+  const file =<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hasan Ashfaq — SEO Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F8F5F0;
+    --dark: #1A1714;
+    --accent: #C8A96E;
+    --accent2: #8B4A3C;
+    --text: #2C2820;
+    --muted: #7A7268;
+    --border: #E2DDD6;
+    --card: #FFFFFF;
+    --section-bg: #F2EDE6;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); line-height: 1.7; }
+  a { color: inherit; text-decoration: none; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(248,245,240,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px;
+  }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--dark); }
+  .nav-links { display: flex; gap: 2rem; font-size: 0.875rem; color: var(--muted); }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta { background: var(--dark); color: #fff; padding: 8px 20px; border-radius: 100px; font-size: 0.85rem; font-weight: 500; transition: background 0.2s; }
+  .nav-cta:hover { background: var(--accent2); }
+
+  /* PROFILE PHOTO */
+  .profile-wrap { display: flex; align-items: center; gap: 16px; margin-bottom: 1.8rem; }
+  .profile-photo-container { position: relative; cursor: pointer; flex-shrink: 0; }
+  .profile-photo { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); display: block; }
+  .profile-placeholder {
+    width: 80px; height: 80px; border-radius: 50%; background: var(--section-bg);
+    border: 2px dashed var(--accent); display: flex; flex-direction: column; align-items: center; justify-content: center;
+    cursor: pointer; transition: border-color 0.2s, background 0.2s;
+  }
+  .profile-placeholder:hover { background: #EBE4D9; border-color: var(--accent2); }
+  .profile-placeholder span { font-size: 1.4rem; }
+  .profile-placeholder p { font-size: 0.6rem; color: var(--muted); margin-top: 2px; text-align: center; line-height: 1.2; }
+  .upload-btn-small {
+    position: absolute; bottom: 0; right: 0; width: 24px; height: 24px; border-radius: 50%;
+    background: var(--dark); border: 2px solid var(--cream); display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem; color: #fff; cursor: pointer;
+  }
+  .profile-info h3 { font-size: 1rem; font-weight: 600; color: var(--dark); }
+  .profile-info p { font-size: 0.82rem; color: var(--muted); }
+  .profile-photo { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; object-position: top; border: 3px solid var(--accent); display: block; }
+
+  /* HERO */
+  .hero { max-width: 900px; margin: 0 auto; padding: 80px 2rem 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--section-bg); border: 1px solid var(--border); padding: 6px 16px; border-radius: 100px; font-size: 0.78rem; color: var(--muted); margin-bottom: 1.5rem; }
+  .hero-badge span { width: 8px; height: 8px; border-radius: 50%; background: #5BBD72; display: inline-block; }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: 3.2rem; line-height: 1.1; color: var(--dark); margin-bottom: 1.2rem; }
+  .hero h1 em { color: var(--accent); font-style: italic; }
+  .hero p { color: var(--muted); font-size: 1rem; margin-bottom: 2rem; }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary { background: var(--dark); color: #fff; padding: 12px 28px; border-radius: 100px; font-size: 0.9rem; font-weight: 500; transition: all 0.2s; }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+  .btn-outline { border: 1px solid var(--border); color: var(--text); padding: 12px 28px; border-radius: 100px; font-size: 0.9rem; transition: all 0.2s; }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* HERO STATS CARD */
+  .hero-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; }
+  .hero-card-title { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.5rem; }
+  .stat-row { display: flex; flex-direction: column; gap: 1rem; }
+  .stat-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; background: var(--section-bg); border-radius: 12px; }
+  .stat-label { font-size: 0.85rem; color: var(--muted); }
+  .stat-value { font-size: 1.2rem; font-weight: 600; color: var(--dark); }
+  .stat-sub { font-size: 0.72rem; color: var(--muted); text-align: right; }
+
+  /* SECTIONS */
+  section { max-width: 900px; margin: 0 auto; padding: 60px 2rem; }
+  .section-label { font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 500; margin-bottom: 0.5rem; }
+  h2 { font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: var(--dark); margin-bottom: 2rem; line-height: 1.2; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .about-text p { color: var(--muted); font-size: 0.97rem; margin-bottom: 1rem; }
+  .about-text strong { color: var(--text); }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .skill-tag { background: var(--section-bg); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; font-size: 0.82rem; color: var(--text); display: flex; align-items: center; gap: 8px; }
+  .skill-dot { width: 6px; height: 6px; border-radius: 50%; }
+  .dot-gold { background: var(--accent); }
+  .dot-red { background: var(--accent2); }
+  .dot-green { background: #5BBD72; }
+  .dot-blue { background: #5B8BBD; }
+  .dot-purple { background: #8B5BBD; }
+
+  /* DARK CASE STUDY CARD */
+  .case-card { background: var(--dark); border-radius: 24px; padding: 2.5rem; margin-bottom: 2rem; color: #fff; }
+  .case-card .section-label { color: var(--accent); }
+  .case-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.7rem; color: #fff; margin-bottom: 0.5rem; }
+  .case-card .case-desc { color: rgba(255,255,255,0.65); font-size: 0.92rem; margin-bottom: 1.5rem; }
+  .metric-pill { background: rgba(200,169,110,0.2); border: 1px solid rgba(200,169,110,0.3); color: var(--accent); border-radius: 100px; padding: 4px 14px; font-size: 0.78rem; font-weight: 500; display: inline-block; margin: 0 4px 6px 0; }
+
+  /* SCREENSHOTS */
+  .screenshots-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 1.5rem; }
+  .screenshots-grid-1 { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 1.5rem; }
+  .screenshot-card { border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); position: relative; }
+  .screenshot-card img { width: 100%; display: block; height: 200px; object-fit: cover; object-position: top; }
+  .screenshot-card img.full { height: 260px; }
+  .screenshot-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 8px 12px; background: linear-gradient(transparent, rgba(0,0,0,0.75)); font-size: 0.78rem; color: #fff; font-weight: 500; }
+
+  /* STORY STEPS */
+  .story-steps { display: flex; flex-direction: column; gap: 0; margin: 1.5rem 0; }
+  .story-step { display: flex; gap: 20px; align-items: flex-start; }
+  .step-line { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+  .step-dot { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600; color: var(--dark); flex-shrink: 0; }
+  .step-connector { width: 2px; background: rgba(200,169,110,0.3); flex: 1; min-height: 24px; margin: 4px 0; }
+  .step-content { padding-bottom: 24px; }
+  .step-content h4 { font-size: 0.95rem; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .step-content p { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+  /* EXP CARD */
+  .exp-card { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 1.8rem; margin-bottom: 1.2rem; }
+  .exp-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1rem; }
+  .exp-title { font-size: 1.1rem; font-weight: 600; color: var(--dark); }
+  .exp-company { font-size: 0.87rem; color: var(--accent); margin-top: 2px; }
+  .exp-date { font-size: 0.78rem; color: var(--muted); background: var(--section-bg); padding: 4px 12px; border-radius: 100px; white-space: nowrap; }
+  .exp-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.75; }
+  .exp-desc li { margin-bottom: 6px; list-style: none; padding-left: 16px; position: relative; }
+  .exp-desc li::before { content: '–'; position: absolute; left: 0; color: var(--accent); }
+
+  /* SERVICES */
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .service-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1.4rem; transition: border-color 0.2s, transform 0.2s; }
+  .service-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .service-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--section-bg); margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+  .service-card h4 { font-size: 0.97rem; font-weight: 600; color: var(--dark); margin-bottom: 6px; }
+  .service-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+  /* LEARNING */
+  .learning-strip { background: var(--section-bg); border: 1px solid var(--border); border-radius: 18px; padding: 2rem; }
+  .learning-items { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 1.2rem; }
+  .learning-item { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 10px 16px; font-size: 0.85rem; color: var(--text); display: flex; align-items: center; gap: 8px; }
+  .learning-badge { background: #FFF3CD; color: #956B00; font-size: 0.68rem; padding: 2px 8px; border-radius: 100px; font-weight: 500; }
+  .done-badge { background: #D4EDDA; color: #1A6B31; font-size: 0.68rem; padding: 2px 8px; border-radius: 100px; font-weight: 500; }
+
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .contact-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1.4rem; display: flex; align-items: center; gap: 14px; }
+  .contact-icon { width: 42px; height: 42px; border-radius: 12px; background: var(--section-bg); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+  .contact-card h4 { font-size: 0.82rem; color: var(--muted); margin-bottom: 2px; }
+  .contact-card p { font-size: 0.92rem; color: var(--dark); font-weight: 500; }
+
+  /* OPEN FOR */
+  .open-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 1.5rem; }
+  .open-card { border: 1px solid var(--border); border-radius: 14px; padding: 1.2rem 1.4rem; transition: border-color 0.2s; }
+  .open-card:hover { border-color: var(--accent); }
+  .open-card h4 { font-size: 0.9rem; font-weight: 600; color: var(--dark); margin-bottom: 4px; }
+  .open-card p { font-size: 0.8rem; color: var(--muted); }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+  footer { text-align: center; padding: 2.5rem; font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--border); }
+
+  @media (max-width: 700px) {
+    .hero, .about-grid, .contact-grid, .services-grid, .open-grid { grid-template-columns: 1fr; }
+    .hero { padding: 40px 1.5rem 30px; gap: 30px; }
+    .hero h1 { font-size: 2.2rem; }
+    .skills-grid, .screenshots-grid { grid-template-columns: 1fr; }
+    nav .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Hasan Ashfaq</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#work">Case Studies</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="/cdn-cgi/l/email-protection#a7ca89cfc6d4c6c99597979494e7c0cac6cecb89c4c8ca" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="profile-wrap">
+      <div class="profile-photo-container">
+        <img src="" class="profile-photo" alt="Hasan Ashfaq">
+      </div>
+      <div class="profile-info">
+        <h3>Hasan Ashfaq</h3>
+        <p>SEO Executive · Karachi, PK</p>
+      </div>
+    </div>
+
+    <div class="hero-badge">
+      <span></span>
+      Open for Mid-Level SEO roles & internships
+    </div>
+    <h1>SEO <em>Executive</em> &amp; Growth Specialist</h1>
+    <p>CS graduate who started experimenting with SEO before finishing university — ranked sites, flipped a niche project for $500, worked with real clients across Pakistan and Brazil, and ran paid campaigns for a Toronto-based app. Now fully focused on building a professional SEO career.</p>
+    <div class="hero-ctas">
+      <a href="/cdn-cgi/l/email-protection#48256620293b29267a78787b7b082f25292124662b2725" class="btn-primary">Let's Work Together</a>
+      <a href="#work" class="btn-outline">View Case Studies</a>
+    </div>
+  </div>
+
+  <div class="hero-card">
+    <div class="hero-card-title">Across All Projects — Real Numbers</div>
+    <div class="stat-row">
+      <div class="stat-item">
+        <div>
+          <div class="stat-label">Organic Users (sadgirldp.com)</div>
+          <div class="stat-sub">Mar 2022 – Apr 2026 · Google Analytics</div>
+        </div>
+        <div class="stat-value">323K</div>
+      </div>
+      <div class="stat-item">
+        <div>
+          <div class="stat-label">Organic Sessions</div>
+          <div class="stat-sub">Pure SEO traffic, no paid</div>
+        </div>
+        <div class="stat-value">279K</div>
+      </div>
+      <div class="stat-item">
+        <div>
+          <div class="stat-label">App Installs (Sendex · Google Ads)</div>
+          <div class="stat-sub">$688 spend · $0.11 per install</div>
+        </div>
+        <div class="stat-value">6,040</div>
+      </div>
+      <div class="stat-item">
+        <div>
+          <div class="stat-label">GSC Impressions (Sanerum)</div>
+          <div class="stat-sub">16 months organic · 518 clicks</div>
+        </div>
+        <div class="stat-value">8.86K</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About Me</div>
+  <h2>Self-Taught. Real Results.</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm <strong>Hasan Ashfaq</strong>, a Computer Science graduate from Karachi, Pakistan. While most people wait until after graduation to start — I was already building, ranking, and experimenting with live websites while still in university.</p>
+      <p>My SEO journey started with <strong>sadgirldp.com</strong> — a niche site I built by spotting an AI image trend on Bing, applying on-page SEO, and watching it rank organically. I later flipped it for <strong>$500</strong>. That one experiment turned into a full career direction.</p>
+      <p>Since then I've managed SEO and digital presence for a <strong>fashion e-commerce brand (Sanerum Couture)</strong>, worked on an <strong>international niche site in Brazil</strong>, and gained hands-on Google Ads experience running app install campaigns for <strong>Sendex Inc (Toronto)</strong>. Everything I know was earned by doing — not just studying.</p>
+      <p>I'm now seeking a <strong>mid-level SEO position</strong> where I can contribute meaningfully, grow alongside experienced professionals, and keep pushing my skills further.</p>
+    </div>
+    <div>
+      <div style="font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.8rem;">Core SEO Skills</div>
+      <div class="skills-grid">
+        <div class="skill-tag"><span class="skill-dot dot-gold"></span>On-Page & Technical SEO</div>
+        <div class="skill-tag"><span class="skill-dot dot-blue"></span>Google Search Console</div>
+        <div class="skill-tag"><span class="skill-dot dot-green"></span>Keyword Research & Clustering</div>
+        <div class="skill-tag"><span class="skill-dot dot-red"></span>Ahrefs / SEMrush</div>
+        <div class="skill-tag"><span class="skill-dot dot-purple"></span>Topical Authority & Content</div>
+        <div class="skill-tag"><span class="skill-dot dot-gold"></span>Google Analytics 4</div>
+        <div class="skill-tag"><span class="skill-dot dot-blue"></span>Core Web Vitals</div>
+        <div class="skill-tag"><span class="skill-dot dot-green"></span>Schema Markup</div>
+        <div class="skill-tag"><span class="skill-dot dot-red"></span>Google Merchant Center</div>
+        <div class="skill-tag"><span class="skill-dot dot-purple"></span>Meta & Google Ads</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CASE STUDIES -->
+<section id="work">
+  <div class="section-label">Case Studies</div>
+  <h2>Real Projects. Real Data.</h2>
+
+  <!-- CASE 1: sadgirldp.com -->
+  <div class="case-card">
+    <div class="section-label">Personal Project · Niche SEO</div>
+    <h3>sadgirldp.com — Ranked & Flipped for $500</h3>
+    <p class="case-desc">Spotted an AI image trend on Bing Image Creator before it went mainstream. Built a niche site targeting high-volume image search queries, applied on-page SEO, and ranked organically — then sold the site for $500. This was my first proof that SEO works when you move fast on the right opportunity.</p>
+    <div>
+      <span class="metric-pill">323K Active Users</span>
+      <span class="metric-pill">279K Organic Sessions</span>
+      <span class="metric-pill">318K New Users</span>
+      <span class="metric-pill">India 213K · PK 34K · US 9.4K</span>
+      <span class="metric-pill">Flipped for $500</span>
+    </div>
+
+    <!-- Story Steps -->
+    <div class="story-steps" style="margin-top: 2rem;">
+      <div class="story-step">
+        <div class="step-line"><div class="step-dot">1</div><div class="step-connector"></div></div>
+        <div class="step-content">
+          <h4>Spotted the Trend</h4>
+          <p>Noticed AI-generated "sad girl" aesthetic images going viral on Bing Image Creator. Identified low-competition, high-intent search queries before the niche was saturated.</p>
+        </div>
+      </div>
+      <div class="story-step">
+        <div class="step-line"><div class="step-dot">2</div><div class="step-connector"></div></div>
+        <div class="step-content">
+          <h4>Built & Optimized</h4>
+          <p>Built the site on WordPress, applied on-page SEO — title tags, meta descriptions, image alt text, internal linking, and site structure optimized for organic search visibility.</p>
+        </div>
+      </div>
+      <div class="story-step">
+        <div class="step-line"><div class="step-dot">3</div><div class="step-connector"></div></div>
+        <div class="step-content">
+          <h4>Ranked Organically</h4>
+          <p>Site reached 323K active users driven almost entirely by organic search — 279K sessions from Google. Top traffic from India, Pakistan, Bangladesh, and the US.</p>
+        </div>
+      </div>
+      <div class="story-step">
+        <div class="step-line"><div class="step-dot">4</div><div class="step-connector"></div></div>
+        <div class="step-content">
+          <h4>Flipped for $500</h4>
+          <p>Sold the site successfully — turning a personal SEO experiment into real monetary proof of concept. This is what made me commit fully to SEO as a career.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Analytics Screenshot -->
+    <div class="screenshots-grid-1">
+      <div class="screenshot-card">
+        <img class="full" src="1775369464004_image.png" alt="sadgirldp.com Google Analytics — 323K users, 279K organic sessions" onerror="this.style.background='#2a2520';this.style.height='260px'">
+        <div class="screenshot-label">📊 Google Analytics — 323K Users · 279K Organic Sessions · Mar 2022 – Apr 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASE 2: Sendex -->
+  <div class="case-card">
+    <div class="section-label">Client Work · Google Ads · App Marketing</div>
+    <h3>Sendex Inc — 6,040 App Installs at $0.11 Each</h3>
+    <p class="case-desc">Worked remotely with Sendex Inc, a Toronto-based app company. Managed Google Ads campaigns focused on driving Android app installs — optimizing creatives, targeting, and bidding strategy to bring cost-per-install down to just $0.11.</p>
+    <div>
+      <span class="metric-pill">$688 Total Spend</span>
+      <span class="metric-pill">95K Clicks</span>
+      <span class="metric-pill">6,040 App Installs</span>
+      <span class="metric-pill">$0.11 Cost Per Install</span>
+      <span class="metric-pill">876K Impressions</span>
+      <span class="metric-pill">173K TrueView Views</span>
+    </div>
+
+    <div class="screenshots-grid" style="margin-top: 1.5rem;">
+      <div class="screenshot-card">
+        <img src="1775369472096_sendeX_app_install_campaign.png" alt="Sendex Google Ads Campaign Dashboard" onerror="this.style.background='#2a2520';this.style.height='200px'">
+        <div class="screenshot-label">📱 Google Ads — Campaigns Dashboard · 4,734 Installs Tracked</div>
+      </div>
+      <div class="screenshot-card">
+        <img src="1775369472096_sendex_app_installls_spedingpng.png" alt="Sendex Google Ads Spend Overview" onerror="this.style.background='#2a2520';this.style.height='200px'">
+        <div class="screenshot-label">💰 $688 Spend · 95K Clicks · 6,040 Conversions · $0.11 CPI</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASE 3: Sanerum -->
+  <div class="case-card">
+    <div class="section-label">Client Work · E-commerce SEO · Social Media</div>
+    <h3>Sanerum Couture — Full Digital Presence from Scratch</h3>
+    <p class="case-desc">Pakistani luxury fashion brand. Managed their complete digital presence — on-page SEO, Google Search Console monitoring, Google Merchant Center product feed, WordPress/WooCommerce website, Meta Ads campaigns, and Instagram content strategy. Built everything from zero.</p>
+    <div>
+      <span class="metric-pill">8,860 GSC Impressions</span>
+      <span class="metric-pill">518 Organic Clicks</span>
+      <span class="metric-pill">421 Products on Google</span>
+      <span class="metric-pill">11K+ Instagram Followers</span>
+      <span class="metric-pill">592K Meta Ads Reach</span>
+      <span class="metric-pill">$1,420 Ad Spend Managed</span>
+    </div>
+
+    <div class="screenshots-grid" style="margin-top: 1.5rem;">
+      <div class="screenshot-card">
+        <img src="1775223459779_sanerum_com.png" alt="Google Search Console Sanerum" onerror="this.style.background='#2a2520';this.style.height='200px'">
+        <div class="screenshot-label">🔍 Google Search Console — 8,860 Impressions · 518 Clicks · 16 Months</div>
+      </div>
+      <div class="screenshot-card">
+        <img src="1775223459777_google_merchant.png" alt="Google Merchant Center" onerror="this.style.background='#2a2520';this.style.height='200px'">
+        <div class="screenshot-label">🛒 Google Merchant Center — 421 Products · Feed Optimization</div>
+      </div>
+      <div class="screenshot-card">
+        <img src="1775223459776_eccomerce_shopping_campiagns.png" alt="Meta Ads Manager" onerror="this.style.background='#2a2520';this.style.height='200px'">
+        <div class="screenshot-label">📊 Meta Ads Manager — 102 Ad Sets · $1,420 Spent · 592K Reach</div>
+      </div>
+      <div class="screenshot-card">
+        <img src="1775223459778_manage_sanerum_brand_social_media_accounts_and_product_lisitng.png" alt="Instagram Sanerum" onerror="this.style.background='#2a2520';this.style.height='200px'">
+        <div class="screenshot-label">📱 Instagram @sanerum_couture — 11K Followers · 845+ Posts</div>
+      </div>
+    </div>
+
+    <!-- Detailed breakdown -->
+    <div class="exp-card" style="margin-top: 1.5rem; background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1);">
+      <div class="exp-header">
+        <div>
+          <div class="exp-title" style="color:#fff;">SEO & Digital Marketing Work</div>
+          <div class="exp-company">What I actually did</div>
+        </div>
+        <div class="exp-date">2024 – 2026</div>
+      </div>
+      <ul class="exp-desc" style="color: rgba(255,255,255,0.65);">
+        <li>Managed WordPress + WooCommerce website — monitored performance via Google Search Console, identified keyword opportunities, improved page structure for organic ranking.</li>
+        <li>Set up and maintained Google Merchant Center with 421 product listings — diagnosed and fixed feed errors (missing size/age group attributes) to improve product approval rate.</li>
+        <li>Ran 102+ Meta Ads ad sets — audience targeting, A/B testing creatives, catalog sale campaigns achieving $3.84 cost per purchase.</li>
+        <li>Grew Instagram from 0 to 11K+ followers with consistent content strategy and collection launches.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CASE 4: Brazil Client -->
+  <div class="case-card">
+    <div class="section-label">Personal Project · International SEO</div>
+    <h3>frasesparafotosozinha.com — Brazilian Portuguese Niche Site</h3>
+    <p class="case-desc">Applied SEO skills to an international market — a Brazilian Portuguese quotes and captions site targeting a completely different language and audience. Worked on on-page optimization, content structure, and keyword research for a non-English market, proving that SEO principles transfer across languages and geographies.</p>
+    <div>
+      <span class="metric-pill">International SEO</span>
+      <span class="metric-pill">Brazilian Portuguese Market</span>
+      <span class="metric-pill">On-Page Optimization</span>
+      <span class="metric-pill">Non-English Keyword Research</span>
+    </div>
+    <div style="margin-top: 1.5rem; padding: 1.2rem; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+      <p style="font-size: 0.88rem; color: rgba(255,255,255,0.55); font-style: italic;">Full analytics and GSC data available on request. This project demonstrates ability to apply SEO in non-English markets — targeting different search behaviors, seasonal trends, and audience intent in Brazilian Portuguese.</p>
+    </div>
+  </div>
+
+</section>
+
+<hr class="divider">
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-label">What I Offer</div>
+  <h2>SEO Services</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🔍</div>
+      <h4>On-Page SEO</h4>
+      <p>Title tags, meta descriptions, heading structure, internal linking, image optimization, and content structuring for target keywords.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚙️</div>
+      <h4>Technical SEO</h4>
+      <p>Core Web Vitals, crawl budget optimization, site structure, schema markup, log file analysis, and WordPress/Shopify SEO fixes.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🗝️</div>
+      <h4>Keyword Research</h4>
+      <p>Topical mapping, keyword clustering, search intent analysis, and content gap identification using Ahrefs, SEMrush, and GSC data.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🛒</div>
+      <h4>E-commerce SEO</h4>
+      <p>Product feed optimization, Google Merchant Center management, category page SEO, and WooCommerce/Shopify store optimization.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <h4>SEO Audits & Reporting</h4>
+      <p>Full site audits using Screaming Frog and Ahrefs, Google Search Console analysis, and monthly performance reporting with actionable insights.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🎯</div>
+      <h4>Paid Ads (Support)</h4>
+      <p>Google Ads (Search & App campaigns) and Meta Ads management — audience setup, creatives, optimization, and conversion tracking.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- LEARNING -->
+<section>
+  <div class="section-label">Growth Mindset</div>
+  <h2>Always Learning</h2>
+  <div class="learning-strip">
+    <p style="color: var(--muted); font-size: 0.92rem;">Everything I've learned came from doing — YouTube, Facebook groups, industry communities, and real experiments on live sites. Here's where I am now:</p>
+    <div class="learning-items">
+      <div class="learning-item">🔍 On-Page SEO <span class="done-badge">Strong</span></div>
+      <div class="learning-item">⚙️ Technical SEO <span class="done-badge">Active</span></div>
+      <div class="learning-item">🗝️ Keyword Research <span class="done-badge">Strong</span></div>
+      <div class="learning-item">📊 Google Search Console <span class="done-badge">Active</span></div>
+      <div class="learning-item">🛒 Google Merchant Center <span class="done-badge">Active</span></div>
+      <div class="learning-item">📈 Ahrefs / SEMrush <span class="done-badge">Active</span></div>
+      <div class="learning-item">🔗 Link Building & Outreach <span class="learning-badge">In Progress</span></div>
+      <div class="learning-item">📢 Google Ads (Search) <span class="learning-badge">In Progress</span></div>
+      <div class="learning-item">📉 Google Analytics 4 <span class="learning-badge">In Progress</span></div>
+      <div class="learning-item">🤖 AI SEO & Automation <span class="done-badge">Active</span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- OPEN FOR -->
+<section>
+  <div class="section-label">Opportunities</div>
+  <h2>Open For</h2>
+  <div class="open-grid">
+    <div class="open-card">
+      <h4>💼 Mid-Level SEO Role</h4>
+      <p>Looking to join a professional team where I can contribute real SEO work, learn from experienced people, and grow fast.</p>
+    </div>
+    <div class="open-card">
+      <h4>🎓 SEO Internship</h4>
+      <p>Open to structured internship programs at agencies or in-house teams — I bring real project experience from day one.</p>
+    </div>
+    <div class="open-card">
+      <h4>🤝 Freelance Projects</h4>
+      <p>Available for on-page audits, keyword research, e-commerce SEO, and Google Merchant Center optimization for brands.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Get In Touch</div>
+  <h2>Let's Work Together</h2>
+  <p style="color: var(--muted); margin-bottom: 2rem; max-width: 500px;">Whether you need an SEO specialist, want to discuss a project, or just want to connect — reach out anytime.</p>
+  <div class="contact-grid">
+    <a href="tel:03262369695" class="contact-card">
+      <div class="contact-icon">📞</div>
+      <div><h4>Phone / WhatsApp</h4><p>0326-2369695</p></div>
+    </a>
+    <a href="/cdn-cgi/l/email-protection#9af7b4f2fbe9fbf4a8aaaaa9a9dafdf7fbf3f6b4f9f5f7" class="contact-card">
+      <div class="contact-icon">✉️</div>
+      <div><h4>Email</h4><p><span class="__cf_email__" data-cfemail="f895d690998b9996cac8c8cbcbb89f95999194d69b9795">[email&#160;protected]</span></p></div>
+    </a>
+    <a href="https://linkedin.com/in/hasan-ashfaq-767a9a1b5/" target="_blank" class="contact-card">
+      <div class="contact-icon">💼</div>
+      <div><h4>LinkedIn</h4><p>Hasan Ashfaq</p></div>
+    </a>
+    <a href="#work" class="contact-card">
+      <div class="contact-icon">📁</div>
+      <div><h4>Case Studies</h4><p>View all projects above</p></div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>Hasan Ashfaq &nbsp;·&nbsp; SEO Executive & Growth Specialist &nbsp;·&nbsp; Karachi, Pakistan</p>
+  <p style="margin-top: 6px;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ff92d1979e8c9e91cdcfcfccccbf98929e9693d19c9092">[email&#160;protected]</a> &nbsp;·&nbsp; 0326-2369695</p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function loadPhoto(event) {
+  const file =
